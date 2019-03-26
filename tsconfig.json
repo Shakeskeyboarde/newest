@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "lib": ["dom"],
+    "types": ["node"],
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "target": "esnext",
+    "declaration": true,
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "**/*.test.tsx",
+    "**/*.test.ts",
+    "**/test.tsx",
+    "**/test.ts"
+  ],
+  "include": [
+    "src/**/*.tsx",
+    "src/**/*.ts"
+  ]
+}
