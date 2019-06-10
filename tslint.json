@@ -1,11 +1,9 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended",
-    "tslint-react"
-  ],
+  "extends": ["tslint:recommended"],
   "jsRules": {},
   "rules": {
+    "max-line-length": [true, 120],
     "curly": false,
     "ordered-imports": false,
     "member-ordering": false,
@@ -15,11 +13,16 @@
     "trailing-comma": false,
     "no-empty": false,
     "no-empty-interface": false,
-    "no-trailing-whitespace": [true, "ignore-blank-lines", "ignore-jsdoc", "ignore-comments", "ignore-template-strings"],
+    "no-trailing-whitespace": [
+      true,
+      "ignore-blank-lines",
+      "ignore-jsdoc",
+      "ignore-comments",
+      "ignore-template-strings"
+    ],
     "no-console": false,
     "eofline": false,
-    "callable-types": false,
-    "jsx-boolean-value": false
+    "callable-types": false
   },
   "rulesDirectory": []
 }

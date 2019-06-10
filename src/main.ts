@@ -7,7 +7,7 @@ import { confirmUpdates } from "./confirmUpdates";
 import { applyUpdates } from "./applyUpdates";
 
 export default async () => {
-  const {indent, pkg} = await readPackage();
+  const { indent, pkg } = await readPackage();
   const updates = await resolveUpdates(pkg);
   const updateCount = countDependencies(updates);
 
@@ -18,13 +18,13 @@ export default async () => {
 
   printUpdates(updates);
 
-  if (!await confirmUpdates()) {
+  if (!(await confirmUpdates())) {
     console.log(chalk.gray(`No changes have been made to "package.json".`));
     return;
   }
-  
+
   await applyUpdates(indent, pkg, updates);
 
-  console.log(chalk.gray(`Updated ${updateCount} "package.json" dependency versions.`));
-  console.log(chalk.gray(`* Remember to run "npm update" to install the updated package versions.`));
+  console.log(chalk.gray(`\nUpdated ${updateCount} "package.json" dependency versions.`));
+  console.log(chalk.gray(`* Remember to run "npm i" to install the updated package versions.\n`));
 };

@@ -3,7 +3,7 @@ import { IDependencies } from "./IDependencies";
 import { IPackage, DEPENDENCY_KEYS } from "./IPackage";
 import compareVersions from "compare-versions";
 
-const RX_VERSION = /^(>|>=|<|<=|~|\^)?([^\s]+)$/;
+const RX_VERSION = /^(>|>=|<|<=|~|\^)?(\S+)$/;
 
 export async function updatePackage(pkg: IPackage): Promise<IPackage> {
   const updates: IPackage = {};
@@ -12,8 +12,7 @@ export async function updatePackage(pkg: IPackage): Promise<IPackage> {
     if (pkg[key] !== undefined) {
       const dependencies = await updateDependencies(pkg[key]!);
 
-      if (dependencies !== undefined)
-        updates[key] = dependencies;
+      if (dependencies !== undefined) updates[key] = dependencies;
     }
   }
 
@@ -28,10 +27,9 @@ async function updateDependencies(dependencies: IDependencies): Promise<IDepende
     try {
       const match = RX_VERSION.exec(dependencies[name]);
 
-      if (match === null)
-        continue;
-      
-      const [, range, currentVersion] = match;
+      if (match === null) continue;
+
+      const [, range = "", currentVersion] = match;
       const latestVersion = await getLatestVersion(name);
 
       if (compareVersions(latestVersion, currentVersion) === 1) {
@@ -42,6 +40,6 @@ async function updateDependencies(dependencies: IDependencies): Promise<IDepende
       // Silently ignore missing packages/versions.
     }
   }
-  
+
   return updated ? updates : undefined;
 }

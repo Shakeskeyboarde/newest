@@ -11,17 +11,8 @@
     "strict": true,
     "noImplicitReturns": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "resolveJsonModule": true
+    "experimentalDecorators": true
   },
-  "exclude": [
-    "**/*.test.tsx",
-    "**/*.test.ts",
-    "**/test.tsx",
-    "**/test.ts"
-  ],
-  "include": [
-    "src/**/*.tsx",
-    "src/**/*.ts"
-  ]
+  "exclude": ["**/*.test.tsx", "**/*.test.ts", "**/test.tsx", "**/test.ts"],
+  "include": ["src/**/*.tsx", "src/**/*.ts"]
 }

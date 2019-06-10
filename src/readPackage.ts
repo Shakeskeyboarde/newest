@@ -5,17 +5,15 @@ import { detectIndent } from "./detectIndent";
 
 const aReadFile = promisify(readFile);
 
-export async function readPackage(): Promise<{indent: string, pkg: IPackage}> {
+export async function readPackage(): Promise<{ indent: string; pkg: IPackage }> {
   try {
     const text = await aReadFile("./package.json", "utf8");
     const indent = detectIndent(text);
     const pkg = JSON.parse(await aReadFile("./package.json", "utf8"));
-    
-    return {indent, pkg};
+
+    return { indent, pkg };
   } catch (err) {
-    if (err.code === "ENOENT")
-      throw new Error(`No "package.json" found.`);
-    else
-      throw new Error(`Invalid package.json file`);
+    if (err.code === "ENOENT") throw new Error(`No "package.json" found.`);
+    else throw new Error(`Invalid package.json file`);
   }
 }
