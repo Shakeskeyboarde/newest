@@ -1,11 +1,14 @@
-import { readFile } from "fs";
-import { promisify } from "util";
-import { IPackage } from "./IPackage";
-import { detectIndent } from "./detectIndent";
+import { readFile } from 'fs';
+import { promisify } from 'util';
+import { detectIndent } from './detectIndent';
+import { IPackage } from './types/IPackage';
 
 const aReadFile = promisify(readFile);
 
-export async function readPackage(): Promise<{ indent: string; pkg: IPackage }> {
+export async function readPackage(): Promise<{
+  indent: string;
+  pkg: IPackage;
+}> {
   try {
     const text = await aReadFile("./package.json", "utf8");
     const indent = detectIndent(text);

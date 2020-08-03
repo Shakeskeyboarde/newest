@@ -1,30 +1,36 @@
-import { readPackage } from "./readPackage";
-import { updatePackage as resolveUpdates } from "./resolveUpdates";
-import { printUpdates } from "./printUpdates";
-import { countDependencies } from "./countDependencies";
-import chalk from "chalk";
-import { confirmUpdates } from "./confirmUpdates";
-import { applyUpdates } from "./applyUpdates";
+import chalk from 'chalk';
+import prompts from 'prompts';
+import { applyUpdates } from './applyUpdates';
+import { readPackage } from './readPackage';
+import { resolveMinVersions } from './resolveMinVersions';
+import { resolveUpdateVersions } from './resolveUpdateVersions';
+import { selectUpdates } from './selectUpdates';
 
 export default async () => {
   const { indent, pkg } = await readPackage();
-  const updates = await resolveUpdates(pkg);
-  const updateCount = countDependencies(updates);
+  const minVersions = resolveMinVersions(pkg);
+  const updateVersions = await resolveUpdateVersions(minVersions);
 
-  if (updateCount === 0) {
+  if (updateVersions.size === 0) {
     console.log(chalk.gray("All packages are up to date."));
     process.exit(0);
   }
 
-  printUpdates(updates);
+  const selectedUpdateVersions = await selectUpdates(
+    minVersions,
+    updateVersions
+  );
 
-  if (!(await confirmUpdates())) {
-    console.log(chalk.gray(`No changes have been made to "package.json".`));
-    return;
+  if (selectedUpdateVersions.size === 0) {
+    console.log(chalk.gray(`No changes have been made.`));
+    process.exit(0);
   }
 
-  await applyUpdates(indent, pkg, updates);
+  await applyUpdates(indent, pkg, selectedUpdateVersions);
 
-  console.log(chalk.gray(`\nUpdated ${updateCount} "package.json" dependency versions.`));
-  console.log(chalk.gray(`* Remember to run "npm i" to install the updated package versions.\n`));
+  console.log(
+    chalk.yellow(
+      `Remember to run "npm i" or "yarn" to apply the updated package versions.`
+    )
+  );
 };
