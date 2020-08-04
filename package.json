@@ -1,7 +1,7 @@
 {
-  "name": "updeps",
-  "description": "Interactively update dependency versions to the latest release versions",
-  "version": "1.0.2",
+  "name": "newest",
+  "description": "Interactively update dependency versions in package.json, to their newest release (non-tagged) versions.",
+  "version": "1.0.0",
   "author": "Chris Ackerman",
   "license": "MIT",
   "repository": {
