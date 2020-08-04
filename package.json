@@ -1,7 +1,7 @@
 {
   "name": "newest",
   "description": "Interactively update dependency versions in package.json, to their newest release (non-tagged) versions.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Chris Ackerman",
   "license": "MIT",
   "repository": {
@@ -18,6 +18,16 @@
     "dist/",
     "lib/",
     "scss/"
+  ],
+  "keywords": [
+    "update",
+    "package",
+    "version",
+    "latest",
+    "upgrade",
+    "evergreen",
+    "dependency",
+    "dependencies"
   ],
   "scripts": {
     "test": "tsc --noEmit && tslint \"src/**/*.ts?(x)\" && cross-env NODE_ENV=test jest --passWithNoTests",
