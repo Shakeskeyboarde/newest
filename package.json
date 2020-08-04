@@ -1,7 +1,7 @@
 {
   "name": "newest",
   "description": "Interactively update dependency versions in package.json, to their newest release (non-tagged) versions.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Chris Ackerman",
   "license": "MIT",
   "repository": {

@@ -7,6 +7,8 @@ Interactively update dependency versions in `package.json`, to their "newest" re
 - Supports the same dependency in multiple categories (e.g. peer and dev).
 - _Only_ updates `package.json` (does not install updated versions).
 
+**Author's Note:** I'm hereby coopting the word "newest" to mean "latest, but only including released (un-tagged) versions".
+
 ## Usage
 
 1. Run the `npx newest` command.
