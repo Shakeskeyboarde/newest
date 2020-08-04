@@ -6,12 +6,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xornot-io/tipsy.git"
+    "url": "git+https://github.com/ChrisAckerman/newest.git"
   },
   "bugs": {
-    "url": "https://github.com/xornot-io/tipsy/issues"
+    "url": "https://github.com/ChrisAckerman/newest/issues"
   },
-  "homepage": "https://github.com/xornot-io/tipsy#readme",
+  "homepage": "https://github.com/ChrisAckerman/newest#readme",
   "bin": "lib/index.js",
   "files": [
     "css/",
