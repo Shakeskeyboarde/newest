@@ -1,28 +1,22 @@
-import compareVersions from 'compare-versions';
+import semver, { SemVer } from 'semver';
 import { getLatestVersion } from './getLatestVersion';
 
-const RX_VERSION = /^(>|>=|<|<=|~|\^)?(\S+)$/;
-
 export async function resolveUpdateVersions(
-  versions: Map<string, string>
-): Promise<Map<string, string>> {
-  const maxVersions = new Map<string, string>();
+  versions: Map<string, SemVer>
+): Promise<Map<string, SemVer>> {
+  const maxVersions = new Map<string, SemVer>();
 
   for (const name of versions.keys()) {
     try {
       const version = versions.get(name)!;
-      const match = RX_VERSION.exec(version);
 
-      if (match === null) continue;
-
-      const [, range = "", versionNumber] = match;
       const maxVersion = await getLatestVersion(name);
 
-      if (compareVersions(maxVersion, versionNumber) > 0) {
-        maxVersions.set(name, `${range}${maxVersion}`);
+      if (semver.gt(maxVersion, version)) {
+        maxVersions.set(name, new SemVer(maxVersion));
       }
     } catch (_err) {
-      // Silently ignore missing packages/versions.
+      // Silently ignore missing packages/versions or version errors.
     }
   }
 

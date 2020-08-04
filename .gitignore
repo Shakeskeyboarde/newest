@@ -3,3 +3,4 @@ lib/
 dist/
 css/
 coverage/
+*.log
