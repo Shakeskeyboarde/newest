@@ -9,10 +9,9 @@ export async function resolveUpdateVersions(
   for (const name of versions.keys()) {
     try {
       const version = versions.get(name)!;
-
       const maxVersion = await getLatestVersion(name);
 
-      if (semver.gt(maxVersion, version)) {
+      if (maxVersion && semver.gt(maxVersion, version)) {
         maxVersions.set(name, new SemVer(maxVersion));
       }
     } catch (_err) {
