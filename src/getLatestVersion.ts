@@ -1,4 +1,5 @@
 import getPackageInfo from 'package-json';
+import { compare } from 'semver';
 
 const cache = new Map<string, string | undefined>();
 
@@ -17,7 +18,7 @@ export async function getLatestVersion(
 
   const version = Object.keys(versions)
     .filter((v) => !v.includes("-"))
-    .sort()
+    .sort(compare)
     .slice(-1)[0];
 
   cache.set(packageName, version);
