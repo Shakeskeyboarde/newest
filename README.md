@@ -3,6 +3,7 @@
 Interactively update dependency versions in `package.json`, to their "newest" release (non-tagged) versions.
 
 - Interactive. You will be prompted to choose which updates you want.
+- Ignores dependencies that have a wildcard (`"*"`) version.
 - Always updates to a caret (`^`) range (e.g. `^1.0.0`).
 - Supports the same dependency in multiple categories (e.g. peer and dev).
 - _Only_ updates `package.json` (does not install updated versions).

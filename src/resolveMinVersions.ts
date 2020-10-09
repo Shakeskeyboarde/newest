@@ -1,5 +1,5 @@
-import semver, { SemVer } from 'semver';
-import { DEPENDENCY_KEYS, IPackage } from './types/IPackage';
+import semver, { SemVer } from "semver";
+import { DEPENDENCY_KEYS, IPackage } from "./types/IPackage";
 
 export function resolveMinVersions(pkg: IPackage): Map<string, SemVer> {
   const minVersions = new Map<string, SemVer>();
@@ -10,7 +10,8 @@ export function resolveMinVersions(pkg: IPackage): Map<string, SemVer> {
     if (versions === undefined) continue;
 
     for (const name of Object.keys(versions)) {
-      const version = semver.minVersion(versions[name]);
+      const version =
+        versions[name] === "*" ? null : semver.minVersion(versions[name]);
 
       if (version == null) continue;
 
