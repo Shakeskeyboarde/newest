@@ -7,6 +7,10 @@ import { selectUpdates } from "./selectUpdates";
 import { confirmInteractive } from "./confirmInteractive";
 
 export default async () => {
+  if (!process.stdout.isTTY) {
+    return;
+  }
+
   const { indent, pkg } = await readPackage();
   const minVersions = resolveMinVersions(pkg);
   const updateVersions = await resolveUpdateVersions(minVersions);

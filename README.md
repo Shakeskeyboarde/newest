@@ -11,10 +11,12 @@ Interactively update dependency versions in `package.json`, to their "newest" re
 ## Getting started
 
 1. Run `npx newest` command.
-   - It will exit immediately if no updates are available.
-   - If updates are available, you will be prompted to continue. After 5 seconds without interaction, the prompt will time out and it will exit silently (exit code 0).
-2. Select the updates you want to apply.
-3. Run `yarn` or `npm install` to _apply_ the changes to your `package.json` file.
+   - It will exit silently if the environment is not interactive (non-TTY).
+   - It will exit silently if no updates are available.
+2. Answer yes to the prompt asking if you want to update packages.
+   - It will exit silently if no answer is received within 5 seconds.
+3. Select the updates you want to apply.
+4. Run `yarn` or `npm install` to _apply_ the changes to your `package.json` file.
 
 **Optional:** Add the `npx newest` command to your `package.json` file "preinstall" script to keep your project evergreen.
 
