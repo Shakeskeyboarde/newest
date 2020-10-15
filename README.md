@@ -20,16 +20,16 @@ Interactively update dependency versions in `package.json`, to their "newest" re
 
 ## Why only caret versions?
 
-- That's the default version range when adding a new package using `npm` or `yarn`. So, very likely the range and current version are simply what was there when the package was added.
-- It indicate that you are reasonably open to version updates.
+- That's the default version range when adding a new package using `npm` or `yarn`. So, it's likely that the range and current version are simply what was there when the package was added.
+- It indicates that you are reasonably open to version updates.
 - More limiting ranges (e.g. `~`) or exact versions probably indicate a "pinned" version.
 - More expansive ranges (e.g. `*` or `>=`) also probably indicate some "special" circumstance, so better to leave them alone.
 
 ## Why update to the newest version?
 
-A version range is useful in allowing others who install your package to get small (probably safe) updates to transitive dependencies. You _could_ use an open ended range (i.e. `>=`), but there's a strong risk of future incompatibility.
+A version range is useful in allowing others who install your package to get small (probably safe) updates to transitive dependencies. You _could_ use an open ended range (i.e. `>=`), but there's a strong risk of future incompatibility if you do so.
 
-So, a well maintained package should also have its dependency version ranges _regularly updated._ Otherwise, it may stop working, have open vulnerabilities, or become incompatible with the ecosystem at large.
+So, a well maintained package should also have its explicit dependency version ranges regularly updated. Otherwise, it may stop working, have open vulnerabilities, or become incompatible with the ecosystem at large.
 
 ## Why is this better than the Yarn and NPM update solutions?
 

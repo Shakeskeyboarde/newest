@@ -4,3 +4,4 @@ dist/
 css/
 coverage/
 *.log
+*.tgz
