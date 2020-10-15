@@ -1,7 +1,7 @@
 {
   "name": "newest",
   "description": "Interactively update dependency versions in package.json to their newest release (non-tagged) versions.",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "Chris Ackerman",
   "license": "MIT",
   "repository": {
@@ -30,6 +30,7 @@
     "dependencies"
   ],
   "scripts": {
+    "preinstall": "npx newest",
     "test": "tsc --noEmit && tslint \"src/**/*.ts?(x)\" && cross-env NODE_ENV=test jest --passWithNoTests",
     "start": "lib/index.js",
     "clean": "del-cli lib dist css coverage && jest --clearCache",
