@@ -1,8 +1,8 @@
-import prompts from 'prompts';
-import { SemVer } from 'semver';
+import prompts from "prompts";
+import { SemVer } from "semver";
 
 export async function selectUpdates(
-  minVersions: Map<string, SemVer>,
+  currentVersions: Map<string, SemVer | string>,
   updateVersions: Map<string, SemVer>
 ): Promise<Map<string, SemVer>> {
   const updates = new Map<string, SemVer>();
@@ -15,9 +15,9 @@ export async function selectUpdates(
         message: "Pick Updates",
         choices: [...updateVersions.keys()].map((name) => {
           return {
-            title: `${name}: ${minVersions
-              .get(name)
-              ?.format()} -> ${updateVersions.get(name)?.format()}`,
+            title: `${name} (${currentVersions.get(
+              name
+            )} -> ${updateVersions.get(name)})`,
             value: name,
           };
         }),

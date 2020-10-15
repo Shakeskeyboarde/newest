@@ -10,15 +10,20 @@ export function resolveMinVersions(pkg: IPackage): Map<string, SemVer> {
     if (versions === undefined) continue;
 
     for (const name of Object.keys(versions)) {
-      const version =
-        versions[name] === "*" ? null : semver.minVersion(versions[name]);
+      const version = versions[name];
 
-      if (version == null) continue;
+      if (!/^\^\S+$/.test(version)) {
+        continue;
+      }
 
-      const minVersion = minVersions.get(name);
+      const minVersion = semver.minVersion(version);
+      const currentMinVersion = minVersions.get(name);
 
-      if (!minVersion || semver.lt(version, minVersion, true)) {
-        minVersions.set(name, version);
+      if (
+        minVersion &&
+        (!currentMinVersion || semver.lt(minVersion, currentMinVersion, true))
+      ) {
+        minVersions.set(name, minVersion);
       }
     }
   }

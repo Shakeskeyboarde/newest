@@ -1,7 +1,4 @@
 import chalk from "chalk";
-import delay from "delay";
-import prompts from "prompts";
-import AbortController from "abort-controller";
 import { applyUpdates } from "./applyUpdates";
 import { readPackage } from "./readPackage";
 import { resolveMinVersions } from "./resolveMinVersions";

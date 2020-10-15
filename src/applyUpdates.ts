@@ -1,7 +1,7 @@
-import { writeFile } from 'fs';
-import { SemVer } from 'semver';
-import { promisify } from 'util';
-import { DEPENDENCY_KEYS, IPackage } from './types/IPackage';
+import { writeFile } from "fs";
+import { SemVer } from "semver";
+import { promisify } from "util";
+import { DEPENDENCY_KEYS, IPackage } from "./types/IPackage";
 
 const aWriteFile = promisify(writeFile);
 
@@ -18,7 +18,7 @@ export async function applyUpdates(
 
       for (const name of versions.keys()) {
         if (pkg[key]![name]) {
-          pkg[key]![name] = `^${versions.get(name)!.format()}`;
+          pkg[key]![name] = `^${versions.get(name)}`;
         }
       }
     }
