@@ -5,11 +5,14 @@ import { resolveMinVersions } from "./resolveMinVersions";
 import { resolveUpdateVersions } from "./resolveUpdateVersions";
 import { selectUpdates } from "./selectUpdates";
 import { confirmInteractive } from "./confirmInteractive";
+import appPkg from "../package.json";
 
 export default async () => {
   if (!process.stdout.isTTY) {
     return;
   }
+
+  console.log(chalk.gray(`Newest ${appPkg.version}`));
 
   const { indent, pkg } = await readPackage();
   const minVersions = resolveMinVersions(pkg);
