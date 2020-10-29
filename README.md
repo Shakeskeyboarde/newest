@@ -14,9 +14,17 @@ Interactively update dependency versions in `package.json`, to their "newest" re
    - It will exit silently if the environment is not interactive (non-TTY).
    - It will exit silently if no updates are available.
 2. Answer yes to the prompt asking if you want to update packages.
-   - It will exit silently if no answer is received within 5 seconds.
+   - It will exit silently if no answer is received within 10 seconds.
+   - _You can skip this prompt and assume interactivity by using the `-i` option._
 3. Select the updates you want to apply.
+   - _You can skip this prompt and update all packages by using the `-a` option._
 4. Run `yarn` or `npm install` to _apply_ the changes to your `package.json` file.
+
+If you only want to update certain packages, you can use glob pattern arguments. For example, the following would only update `@babel` scoped packages, _except_ for `@babel/core`
+
+```bash
+npx newest "@babel/*" "!@babel/core"
+```
 
 **Optional:** Add the `npx newest` command to your `package.json` file "preinstall" script to keep your project evergreen.
 
