@@ -9,18 +9,18 @@ export async function confirmInteractive(): Promise<boolean> {
     prompts({
       type: "confirm",
       name: "value",
-      message: "Do you want to update packages?",
+      message: "Do you want to interactively update packages?",
     }).finally(() => {
       confirmAnswered = true;
     }),
-    delay(5000).then(() => {
+    delay(10000).then(() => {
       if (!confirmAnswered) console.log();
     }),
   ]);
 
   if (!confirmed || !confirmed?.value) {
     if (confirmed == null) {
-      console.log(chalk.gray("Confirmation timed out."));
+      console.log(chalk.gray("Interactive confirmation timed out."));
     }
 
     return false;
