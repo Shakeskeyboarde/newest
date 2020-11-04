@@ -8,9 +8,15 @@ import { resolveUpdateVersions } from "./resolveUpdateVersions";
 import { selectUpdates } from "./selectUpdates";
 import { confirmInteractive } from "./confirmInteractive";
 
-const appPkg = require("../package.json");
-
 export default async () => {
+  // Remove npm_* variables from the environment because they block correct
+  // usage of the .npmrc file.
+  Object.keys(process.env)
+    .filter((key) => key.startsWith("npm_"))
+    .forEach((key) => delete process.env[key]);
+
+  const appPkg = require("../package.json");
+
   commander
     .storeOptionsAsProperties(false)
     .usage("newest [options] [globs...]")
